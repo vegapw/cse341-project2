@@ -5,36 +5,12 @@
     "description": "Cars API from project 2 for CSE-341 - Web Services",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://cse341-project2-abzn.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "Hello World"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/cars/": {
       "get": {
         "tags": [
