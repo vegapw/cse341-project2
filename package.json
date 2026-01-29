@@ -1,0 +1,21 @@
+{
+  "name": "cse341_project2",
+  "version": "1.0.0",
+  "description": "Project 2 for CSE-341",
+  "license": "ISC",
+  "author": "Fredy Vega",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.1",
+    "mongodb": "^7.0.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
