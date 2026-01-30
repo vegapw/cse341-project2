@@ -15,6 +15,9 @@ const getAll = async (req, res) => {
 
 const getCarById = async (req, res) => {
   //#swagger.tags=['Cars']
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid car id.');
+    }
     const contactId = ObjectId.createFromHexString(req.params.id);
     const result = mongoDB.getDatabase().db().collection('cars').find({_id:contactId});
     result.toArray().then((cars) => {
@@ -46,8 +49,11 @@ const createCar = async (req, res) => {
 
 const updateCar = async (req, res) => {
   //#swagger.tags=['Cars']
-  const carId = ObjectId.createFromHexString(req.params.id);
-  const car = {
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid car id.');
+    }
+    const carId = ObjectId.createFromHexString(req.params.id);
+    const car = {
     make : req.body.make,
     model : req.body.model,
     year : req.body.year,
@@ -56,23 +62,26 @@ const updateCar = async (req, res) => {
     horsepower : req.body.horsepower,
     transmision : req.body.transmision
   };
-  const result = await mongoDB.getDatabase().db().collection('cars').replaceOne({_id:carId}, car);
-  if (result.modifiedCount > 0) {
-    res.status(204).send();
-  } else {
-    res.status(500).json(response.error || 'Some error occurred while updating the car.');
-  }
+    const result = await mongoDB.getDatabase().db().collection('cars').replaceOne({_id:carId}, car);
+    if (result.modifiedCount > 0) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while updating the car.');
+    }
 };
 
 const deleteCar = async (req, res) => {
   //#swagger.tags=['Cars']
-  const carId = ObjectId.createFromHexString(req.params.id);
-  const result = await mongoDB.getDatabase().db().collection('cars').deleteOne({_id:carId});
-  if (result.deletedCount > 0) {
-    res.status(204).send();
-  } else {
-    res.status(500).json(response.error || 'Some error occurred while deleting the car.');
-  }
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid car id.');
+    }
+    const carId = ObjectId.createFromHexString(req.params.id);
+    const result = await mongoDB.getDatabase().db().collection('cars').deleteOne({_id:carId});
+    if (result.deletedCount > 0) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while deleting the car.');
+    }
 };
 
   module.exports =
