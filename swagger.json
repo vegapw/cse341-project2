@@ -5,7 +5,7 @@
     "description": "Cars API from project 2 for CSE-341 - Web Services",
     "version": "1.0.0"
   },
-  "host": "https://cse341-project2-abzn.onrender.com",
+  "host": "cse341-project2-abzn.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
