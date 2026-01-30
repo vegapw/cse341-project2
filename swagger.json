@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Cars API",
+    "title": "Cars API for Project 2",
     "description": "Cars API from project 2 for CSE-341 - Web Services",
     "version": "1.0.0"
   },

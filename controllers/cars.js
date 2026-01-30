@@ -16,13 +16,11 @@ const getAll = async (req, res) => {
 const getCarById = async (req, res) => {
   //#swagger.tags=['Cars']
     const contactId = ObjectId.createFromHexString(req.params.id);
-    const result = mongoDB
-    .getDatabase().db().collection('cars').find({_id:contactId});
+    const result = mongoDB.getDatabase().db().collection('cars').find({_id:contactId});
     result.toArray().then((cars) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(cars[0]);
     });
-
   };
 
 const createCar = async (req, res) => {
