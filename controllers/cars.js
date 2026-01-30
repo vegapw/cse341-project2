@@ -17,13 +17,14 @@ const getCarById = async (req, res) => {
   //#swagger.tags=['Cars']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid car id.');
+    } else {
+        const contactId = ObjectId.createFromHexString(req.params.id);
+        const result = mongoDB.getDatabase().db().collection('cars').find({_id:contactId});
+        result.toArray().then((cars) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(cars[0]);
+        });
     }
-    const contactId = ObjectId.createFromHexString(req.params.id);
-    const result = mongoDB.getDatabase().db().collection('cars').find({_id:contactId});
-    result.toArray().then((cars) => {
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(cars[0]);
-    });
   };
 
 const createCar = async (req, res) => {
@@ -51,22 +52,23 @@ const updateCar = async (req, res) => {
   //#swagger.tags=['Cars']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid car id.');
-    }
-    const carId = ObjectId.createFromHexString(req.params.id);
-    const car = {
-    make : req.body.make,
-    model : req.body.model,
-    year : req.body.year,
-    color : req.body.color,
-    odometer : req.body.odometer,
-    horsepower : req.body.horsepower,
-    transmision : req.body.transmision
-  };
-    const result = await mongoDB.getDatabase().db().collection('cars').replaceOne({_id:carId}, car);
-    if (result.modifiedCount > 0) {
-        res.status(204).send();
     } else {
-        res.status(500).json(response.error || 'Some error occurred while updating the car.');
+        const carId = ObjectId.createFromHexString(req.params.id);
+        const car = {
+        make : req.body.make,
+        model : req.body.model,
+        year : req.body.year,
+        color : req.body.color,
+        odometer : req.body.odometer,
+        horsepower : req.body.horsepower,
+        transmision : req.body.transmision
+        };
+        const result = await mongoDB.getDatabase().db().collection('cars').replaceOne({_id:carId}, car);
+        if (result.modifiedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(500).json(response.error || 'Some error occurred while updating the car.');
+        }
     }
 };
 
@@ -74,13 +76,14 @@ const deleteCar = async (req, res) => {
   //#swagger.tags=['Cars']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid car id.');
-    }
-    const carId = ObjectId.createFromHexString(req.params.id);
-    const result = await mongoDB.getDatabase().db().collection('cars').deleteOne({_id:carId});
-    if (result.deletedCount > 0) {
-        res.status(204).send();
     } else {
-        res.status(500).json(response.error || 'Some error occurred while deleting the car.');
+        const carId = ObjectId.createFromHexString(req.params.id);
+        const result = await mongoDB.getDatabase().db().collection('cars').deleteOne({_id:carId});
+        if (result.deletedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(500).json(response.error || 'Some error occurred while deleting the car.');
+        }
     }
 };
 
