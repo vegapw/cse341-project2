@@ -8,6 +8,15 @@ const carValidationRules = () => {
     ]
 };
 
+const categoriesValidationRules = () => {
+    return [
+        body('name').toLowerCase().isIn(["economy", "suv", "luxury", "van", "sport"]).withMessage('Must be a valid category.'),
+        body('pricePerDay').isInt({gt:0}).withMessage('Price per day Must be greater than zero.'),
+        body('pricePerHour').isInt({gt:0}).withMessage('Price per hour Must be greater than zero.'),
+        body('depositAmount').isInt({min:0}).withMessage('Deposit must be at least zero.')
+    ]
+};
+
 const validate = (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
@@ -18,4 +27,4 @@ const validate = (req, res, next) => {
     return res.status(422).json( {errors : extractedErrors, });
 };
 
-module.exports = { carValidationRules, validate }
+module.exports = { carValidationRules, categoriesValidationRules, validate }
