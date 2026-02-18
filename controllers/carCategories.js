@@ -39,6 +39,12 @@ const getCategoryById = async (req, res) => {
 const createCarCategory = async (req, res) => {
   //#swagger.tags=['CarCategories']
   try {
+    const carCategories = {
+        name : req.body.name,
+        pricePerDay : req.body.pricePerDay,
+        pricePerHour : req.body.pricePerHour,
+        depositAmount : req.body.depositAmount
+        };
     const result = await CarCategories.create(req.body);
     res.status(201).json(result._id);
   } catch (err) {
@@ -50,6 +56,12 @@ const createCarCategory = async (req, res) => {
 const updateCarCategory = async (req, res) => {
   //#swagger.tags=['CarCategories']
   try {
+    const carCategories = {
+        name : req.body.name,
+        pricePerDay : req.body.pricePerDay,
+        pricePerHour : req.body.pricePerHour,
+        depositAmount : req.body.depositAmount
+    };
     let result = await CarCategories.findById(req.params.id).lean();
     if (!result) {
       return res.status(404).json('Car Category not found');

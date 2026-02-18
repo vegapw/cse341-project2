@@ -11,19 +11,6 @@
     "https"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "Root"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/cars/": {
       "get": {
         "tags": [
@@ -141,6 +128,36 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "make": {
+                  "example": "any"
+                },
+                "model": {
+                  "example": "any"
+                },
+                "year": {
+                  "example": "any"
+                },
+                "color": {
+                  "example": "any"
+                },
+                "odometer": {
+                  "example": "any"
+                },
+                "horsepower": {
+                  "example": "any"
+                },
+                "transmision": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -222,6 +239,29 @@
           "CarCategories"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "pricePerDay": {
+                  "example": "any"
+                },
+                "pricePerHour": {
+                  "example": "any"
+                },
+                "depositAmount": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -278,6 +318,27 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "pricePerDay": {
+                  "example": "any"
+                },
+                "pricePerHour": {
+                  "example": "any"
+                },
+                "depositAmount": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {

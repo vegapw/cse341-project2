@@ -85,7 +85,7 @@ const updateCar = async (req, res) => {
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid car id.');
     } else {
-        /*const carId = ObjectId.createFromHexString(req.params.id);
+        /*const carId = ObjectId.createFromHexString(req.params.id);*/
         const car = {
         make : req.body.make,
         model : req.body.model,
@@ -94,7 +94,7 @@ const updateCar = async (req, res) => {
         odometer : req.body.odometer,
         horsepower : req.body.horsepower,
         transmision : req.body.transmision
-        };*/
+        };
         //const result = await mongoDB.getDatabase().db().collection('cars').replaceOne({_id:carId}, car);
         /*if (result.modifiedCount > 0) {
             res.status(204).send();
